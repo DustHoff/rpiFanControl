@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	http.Handle("/control", fancontrol.NewFanControl(19))
+	http.Handle("/control", fancontrol.NewFanControl(13))
 	http.Handle("/metric", promhttp.Handler())
 	fmt.Println("start listen port 8080")
 	http.ListenAndServe(":8080", nil)
