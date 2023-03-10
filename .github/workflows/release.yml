@@ -41,5 +41,3 @@ jobs:
         with:
           context: .
           platforms: linux/arm64
-          push: true
-          tags: dusthoff/rpifancontrol:latest
