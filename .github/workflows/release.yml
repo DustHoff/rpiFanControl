@@ -23,7 +23,6 @@ jobs:
           version: latest
           args: release --clean --skip-validate
         env:
-          # GitHub sets this automatically
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
