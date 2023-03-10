@@ -39,8 +39,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: .
-          build-contexts: /home/runner/work/rpifancontrol/rpifancontrol
+          args: --context ./
           push: true
           platforms: linux/arm64
           tags: ghcr.io/dusthoff/fancontrol
