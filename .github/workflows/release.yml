@@ -24,6 +24,10 @@ jobs:
           args: release --clean --skip-validate
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: cheat
+        run: |
+          pwd
+          ls -ali
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
