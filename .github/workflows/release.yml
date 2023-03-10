@@ -39,4 +39,4 @@ jobs:
       - name: Build and push#
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: /home/runner/work/rpifancontrol/rpifancontrol
