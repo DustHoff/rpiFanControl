@@ -38,12 +38,5 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: cheat
         run: |
-          cp -r /home/runner/work/rpifancontrol/rpifancontrol /tmp/buildkit-mount1242155791
-      - name: Build and push
-        uses: docker/build-push-action@v3
-        with:
-          context: /home/runner/work/rpifancontrol/rpifancontrol
-          push: true
-          platforms: linux/arm64
-          tags: ghcr.io/dusthoff/fancontrol
+          /usr/bin/docker buildx build --platform linux/arm64 --provenance false --tag ghcr.io/dusthoff/fancontrol --push /home/runner/work/rpifancontrol/rpifancontrol
 
