@@ -34,7 +34,11 @@ func (fc FanControl) ServeHTTP(writer http.ResponseWriter, request *http.Request
 		if err != nil {
 			log.Fatalln(err)
 		}
-		speed, _ := strconv.Atoi(buf.String())
+		speed, err := strconv.Atoi(buf.String())
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println("received speed control request value:" + fmt.Sprint(speed))
 		fc.SetSpeed(speed)
 	}
 
@@ -46,6 +50,7 @@ func NewFanControl(pinNo int) FanControl {
 	pin := rpio.Pin(pinNo)
 	pin.Mode(rpio.Pwm)
 	pin.Freq(25000)
+	pin.DutyCycle(0, 100)
 	return FanControl{
 		pin: pin,
 	}
@@ -61,4 +66,5 @@ func (fc FanControl) SetMinSpeed(min int) {
 
 func (fc FanControl) SetSpeed(speed int) {
 	fc.pin.DutyCycle(uint32(speed), 100)
+	fmt.Println("changed speed to dutycylce " + fmt.Sprint(speed) + "/100")
 }
