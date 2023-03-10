@@ -36,5 +36,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: cheat
         run: |
-          docker build --tag ghcr.io/dusthoff/fancontrol --push /home/runner/work/rpifancontrol/rpifancontrol
+          docker build --tag ghcr.io/dusthoff/fancontrol ./
+          docker push ghcr.io/dusthoff/fancontrol
 
