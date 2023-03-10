@@ -40,7 +40,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          push: false
+          push: true
           platforms: linux/arm64
-          tags: ghcr.io/dusthoff/fancontrol
+          tags: ghcr.io/DustHoff/rpifancontrol/fancontrol:latest
 
