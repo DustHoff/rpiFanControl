@@ -28,17 +28,5 @@ jobs:
         run: |
           pwd
           ls -ali
-      - name: Login to DockerHub
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and push
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          push: true
-          platform: linux/arm64
-          tags: "ghcr.io/dusthoff/fancontrol:latest"
+
 
