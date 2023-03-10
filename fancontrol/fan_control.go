@@ -65,6 +65,6 @@ func (fc FanControl) SetMinSpeed(min int) {
 }
 
 func (fc FanControl) SetSpeed(speed int) {
-	fc.pin.DutyCycle(uint32(speed), 100)
+	fc.pin.DutyCycleWithPwmMode(uint32(speed), 100, rpio.Balanced)
 	fmt.Println("changed speed to dutycylce " + fmt.Sprint(speed) + "/100")
 }
