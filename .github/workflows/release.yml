@@ -40,4 +40,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/dusthoff/rpiFanControl
+          tags: ghcr.io/dusthoff/rpifancontrol
