@@ -36,6 +36,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: cheat
+        run: |
+          cp -r /home/runner/work/rpifancontrol/rpifancontrol /tmp/buildkit-mount1242155791
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
