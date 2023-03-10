@@ -42,5 +42,5 @@ jobs:
           context: .
           push: true
           platforms: linux/arm64
-          tags: ghcr.io/DustHoff/rpifancontrol/fancontrol:latest
+          tags: ghcr.io/dusthoff/rpifancontrol/fancontrol:latest
 
