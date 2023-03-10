@@ -50,7 +50,7 @@ func NewFanControl(pinNo int) FanControl {
 	pin := rpio.Pin(pinNo)
 	pin.Mode(rpio.Pwm)
 	pin.Freq(25000)
-	pin.DutyCycle(0, 100)
+	pin.DutyCycleWithPwmMode(0, 100, rpio.Balanced)
 	return FanControl{
 		pin: pin,
 	}
