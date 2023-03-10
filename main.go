@@ -1,7 +1,7 @@
 package main
 
 import (
-	"FanControll/fancontrol"
+	"FanControl/fancontrol"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"net/http"
 )
