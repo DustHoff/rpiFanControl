@@ -1,0 +1,40 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: fancontrol
+  namespace: fancontrol
+  labels:
+    app.kubernetes.io/name: fancontrol
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: fancontrol
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: fancontrol
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: kubenode1
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: fancontrol
+          terminationMessagePath: /dev/termination-log
+          ports:
+            - name: samba
+              containerPort: 8080
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          terminationMessagePolicy: File
+          image: 'ghcr.io/dusthoff/fancontrol:master'
+          securityContext:
+            runAsUser: 0
+      dnsPolicy: ClusterFirst
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+

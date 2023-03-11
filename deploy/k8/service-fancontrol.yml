@@ -1,0 +1,20 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: fancontrol
+  namespace: fancontrol
+  labels:
+    app.kubernetes.io/name: fancontrol
+spec:
+  ipFamilies:
+    - IPv4
+  ports:
+    - name: samba
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    app.kubernetes.io/name: fancontrol
