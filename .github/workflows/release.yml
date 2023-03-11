@@ -54,7 +54,7 @@ jobs:
       - name: Docker meta
         uses: docker/metadata-action@v4
         with:
-          image: ghcr.io/dusthoff/fancontrol
+          images: ghcr.io/dusthoff/fancontrol
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
