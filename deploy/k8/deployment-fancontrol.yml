@@ -20,9 +20,16 @@ spec:
       restartPolicy: Always
       schedulerName: default-scheduler
       terminationGracePeriodSeconds: 30
+      volumes:
+        - name: gpiomem-device
+          hostPath:
+            path: /dev/gpiomem
       containers:
         - name: fancontrol
           terminationMessagePath: /dev/termination-log
+          volumeMounts:
+            - name: gpiomem-device
+              mountPath: /dev/gpiomem
           ports:
             - name: samba
               containerPort: 8080
@@ -31,6 +38,7 @@ spec:
           terminationMessagePolicy: File
           image: 'ghcr.io/dusthoff/fancontrol:master'
           securityContext:
+            privileged: true
             runAsUser: 0
       dnsPolicy: ClusterFirst
   strategy:
