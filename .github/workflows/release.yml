@@ -51,11 +51,16 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Docker meta
+        uses: docker/metadata-action@v4
+        with:
+          image: ghcr.io/dusthoff/fancontrol
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
           context: ./
           push: true
           platforms: linux/arm64
-          tags: ghcr.io/dusthoff/fancontrol:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
