@@ -57,11 +57,11 @@ func (fc FanControl) SetMinSpeed(min int) {
 
 func (fc FanControl) SetSpeed(speed int) {
 	fc.pin.DutyCycleWithPwmMode(uint32(speed), 100, rpio.Balanced)
-	log.Println("changed speed to dutycylce " + fmt.Sprint(speed) + "%")
 	fc.speed = speed
+	log.Println("changed speed to duty cycle " + fmt.Sprint(fc.speed) + "%")
 }
 
 func (fc FanControl) GetSpeed() float64 {
-	log.Println(float64(fc.speed))
+	log.Println("debug" + " " + fmt.Sprint(fc.speed) + "" + fmt.Sprint(float64(fc.speed)))
 	return float64(fc.speed)
 }

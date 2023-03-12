@@ -17,7 +17,7 @@ func main() {
 	gauge := prometheus.NewGaugeFunc(prometheus.GaugeOpts{
 		Name:      "fan_cycle_duty",
 		Namespace: "rpi",
-		Help:      "cycle duty of fan in percent",
+		Help:      "duty cycle of fan in percent",
 	}, fancontroller.GetSpeed)
 	reg.MustRegister(gauge)
 
