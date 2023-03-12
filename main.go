@@ -22,7 +22,7 @@ func main() {
 	reg.MustRegister(gauge)
 
 	http.Handle("/control", fancontroller)
-	http.Handle("/metric", promhttp.HandlerFor(reg, promhttp.HandlerOpts{
+	http.Handle("/metrics", promhttp.HandlerFor(reg, promhttp.HandlerOpts{
 		EnableOpenMetrics: false,
 	}))
 	log.Println("start listen port 8080")
