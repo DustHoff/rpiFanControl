@@ -9,21 +9,13 @@ import (
 	"strconv"
 	"strings"
 )
-import "github.com/prometheus/client_golang/prometheus"
-import "github.com/prometheus/client_golang/prometheus/promauto"
-
-var (
-	fanspeed = promauto.NewCounter(prometheus.CounterOpts{
-		Name: "case_fan_speed",
-		Help: "The total speed of case fan",
-	})
-)
 
 var _ http.Handler = &FanControl{}
 
 type FanControl struct {
 	maxSpeed int
 	minSpeed int
+	speed    int
 	pin      rpio.Pin
 }
 
@@ -36,9 +28,8 @@ func (fc FanControl) ServeHTTP(writer http.ResponseWriter, request *http.Request
 		}
 		speed, err := strconv.Atoi(buf.String())
 		if err != nil {
-			fmt.Println(err)
+			log.Println(err)
 		}
-		fmt.Println("received speed control request value:" + fmt.Sprint(speed))
 		fc.SetSpeed(speed)
 	}
 
@@ -66,5 +57,10 @@ func (fc FanControl) SetMinSpeed(min int) {
 
 func (fc FanControl) SetSpeed(speed int) {
 	fc.pin.DutyCycleWithPwmMode(uint32(speed), 100, rpio.Balanced)
-	fmt.Println("changed speed to dutycylce " + fmt.Sprint(speed) + "/100")
+	log.Println("changed speed to dutycylce " + fmt.Sprint(speed) + "%")
+	fc.speed = speed
+}
+
+func (fc FanControl) GetSpeed() float64 {
+	return float64(fc.speed)
 }
