@@ -12,19 +12,21 @@ import (
 func main() {
 	log.SetOutput(os.Stdout)
 	reg := prometheus.NewRegistry()
-	fancontroller := fancontrol.NewFanControl(13)
+	fancontrol.InitFanControl(13)
 	// Add go runtime metrics and process collectors.
 	gauge := prometheus.NewGaugeFunc(prometheus.GaugeOpts{
 		Name:      "fan_cycle_duty",
 		Namespace: "rpi",
 		Help:      "duty cycle of fan in percent",
-	}, fancontroller.GetSpeed)
+	}, fancontrol.GetSpeed)
 	reg.MustRegister(gauge)
-
-	http.Handle("/control", fancontroller)
 	http.Handle("/metrics", promhttp.HandlerFor(reg, promhttp.HandlerOpts{
 		EnableOpenMetrics: false,
 	}))
+
+	api := fancontrol.Api{}
+	http.Handle("/control", api)
+
 	log.Println("start listen port 8080")
 	log.Fatalln(http.ListenAndServe(":8080", nil))
 
