@@ -5,11 +5,14 @@ metadata:
   namespace: fancontrol
   labels:
     app.kubernetes.io/name: fancontrol
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8080"
 spec:
   ipFamilies:
     - IPv4
   ports:
-    - name: samba
+    - name: fancontrol
       protocol: TCP
       port: 8080
       targetPort: 8080
