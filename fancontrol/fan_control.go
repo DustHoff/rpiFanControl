@@ -62,5 +62,6 @@ func (fc FanControl) SetSpeed(speed int) {
 }
 
 func (fc FanControl) GetSpeed() float64 {
+	log.Println(float64(fc.speed))
 	return float64(fc.speed)
 }
