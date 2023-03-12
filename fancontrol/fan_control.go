@@ -24,6 +24,5 @@ func SetSpeed(speedValue int) {
 }
 
 func GetSpeed() float64 {
-	log.Println("debug" + " " + fmt.Sprint(speed) + "" + fmt.Sprint(float64(speed)))
 	return float64(speed)
 }
