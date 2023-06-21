@@ -21,4 +21,4 @@ spec:
                 - "--data"
                 - "70"
                 - "http://fancontrol:8080/control"
-  schedule: 0 8 * * *
+  schedule: 0 6 * * *
