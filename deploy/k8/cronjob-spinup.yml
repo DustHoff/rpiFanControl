@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  namespace: fancontrol
+  name: spinup
+spec:
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            test: test
+        spec:
+          containers:
+            - name: spin-up-duty-cycle
+              image: 'ghcr.io/dusthoff/fancontrol:master'
+              command:
+                - "curl"
+                - "-XPOST"
+                - "--data '70'"
+                - "http://fancontrol:8080/control"
+  schedule: 0 8 * * *

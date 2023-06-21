@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  namespace: fancontrol
+  name: spindown
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: spin-down-duty-cycle
+              image: 'ghcr.io/dusthoff/fancontrol:master'
+              command:
+                - "curl"
+                - "-XPOST"
+                - "--data '40'"
+                - "http://fancontrol:8080/control"
+  schedule: 0 19 * * *
