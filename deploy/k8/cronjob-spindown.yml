@@ -15,6 +15,7 @@ spec:
               command:
                 - "curl"
                 - "-XPOST"
-                - "--data '40'"
+                - "--data"
+                - "40"
                 - "http://fancontrol:8080/control"
   schedule: 0 19 * * *
