@@ -11,6 +11,7 @@ spec:
           annotations:
             test: test
         spec:
+          restartPolicy: OnFailure
           containers:
             - name: spin-up-duty-cycle
               image: 'ghcr.io/dusthoff/fancontrol:master'

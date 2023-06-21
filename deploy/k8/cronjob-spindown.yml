@@ -8,6 +8,7 @@ spec:
     spec:
       template:
         spec:
+          restartPolicy: OnFailure
           containers:
             - name: spin-down-duty-cycle
               image: 'ghcr.io/dusthoff/fancontrol:master'
