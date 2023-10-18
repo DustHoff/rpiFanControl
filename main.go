@@ -13,6 +13,7 @@ func main() {
 	log.SetOutput(os.Stdout)
 	reg := prometheus.NewRegistry()
 	fancontrol.InitFanControl(13)
+	fancontrol.SetSpeed(100)
 	// Add go runtime metrics and process collectors.
 	gauge := prometheus.NewGaugeFunc(prometheus.GaugeOpts{
 		Name:      "fan_cycle_duty",
